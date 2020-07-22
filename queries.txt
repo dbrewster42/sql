@@ -94,7 +94,30 @@ VALUES (1, 3)
 SELECT * FROM hobbystudent;
 
 
-
+CREATE TABLE joins(id INT AUTO_INCREMENT PRIMARY KEY, student_id INT, hobby_id INT, FOREIGN KEY(student_id) REFERENCES ta_Emilios(id), FOREIGN KEY(hobby_id) REFERENCES hobbies(id));
+INSERT INTO joins(student_id, hobby_id)
+VALUES (1, 3)
+,(1, 1)
+,(1, 4)
+,(1, 6)
+,(1, 7)
+,(2, 1)
+,(2, 5)
+,(3, 2)
+,(4, 1)
+,(4, 6)
+-- ,(4, 0)
+,(5, 2)
+,(6, 3)
+,(7, 1)
+,(7, 7)
+,(8, 8)
+,(9, 1)
+,(9, 3)
+,(10, 1)
+,(11, 5)
+,(11, 2);
+SELECT * FROM hs;
 
 
 
