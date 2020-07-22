@@ -126,6 +126,8 @@ USE tc1_Devon_Brewster;
 UPDATE ta_Emilios SET bootcamp='Coding Dojo' WHERE id=1 || id BETWEEN 6 AND 8;
 SELECT * FROM ta_Emilios;
 
+SELECT * FROM ta_Emilios
+JOIN joins ON ta_Emilios.id = student_id;
 -- SELECT MAX(last_name) AS most_hobbies FROM 
 -- (SELECT first_name, last_name FROM ta_Emilios
 -- Join joins ON ta_Emilios.id = joins.student_id
