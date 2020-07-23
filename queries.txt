@@ -160,3 +160,7 @@ JOIN joins ON ta_Emilios.id = student_id;
 -- (SELECT first_name, last_name FROM ta_Emilios
 -- Join joins ON ta_Emilios.id = joins.student_id
 -- GROUP BY last_name)a;
+
+SELECT * FROM ta_Emilios
+INNER JOIN joins AS b ON ta_Emilios.id = student_id
+INNER JOIN hobbies AS c ON b.hobby_id = c.id;
