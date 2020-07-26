@@ -1,0 +1,166 @@
+USE tc1_Devon_Brewster;
+USE students;
+DROP database tc1
+DROP TABLE tekcampers;
+CREATE TABLE tekcampers2(id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, first_name VARCHAR(20), last_name VARCHAR(20), gender CHAR, education VARCHAR(30));
+
+SHOW TABLES;
+SELECT * FROM tekcamp01;
+INSERT INTO tekcampers
+SELECT * FROM tekcamp01;
+
+SELECT * FROM tekcampers;
+SHOW TABLES;
+SELECT * FROM tekcampers2;
+
+SELECT COUNT(last_name) > 7 FROM tekcampers2;
+SELECT * FROM tekcampers2 ORDER BY first_name;
+SELECT * FROM tekcampers2 ORDER BY last_name;
+SELECT * FROM tekcampers2 WHERE gender = 'M';
+SELECT * FROM tekcampers2 WHERE gender = 'F';
+SELECT * FROM tekcampers2 WHERE education= 'Master';
+SELECT * FROM tekcampers2 WHERE education= 'Bachelor';
+SELECT * FROM tekcampers2 WHERE education= 'Associate';
+SELECT * FROM tekcampers2 WHERE education != 'Associate' && education !=  'Bachelor' && education= 'Master';
+
+
+CREATE TABLE ta_Emilios(id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, first_name VARCHAR(20), last_name VARCHAR(20), gender CHAR, education VARCHAR(30));
+ INSERT INTO ta_Emilios(first_name, last_name, gender, education)
+ VALUES ('Devon', 'Brewster', 'M', 'some college')
+,('Abigail', 'Swigert', 'F', 'Bachelor')
+,('Gabe', 'Chavez', 'M', 'Bachelor')
+,('Phoenix', 'Swigert', 'F', 'Associate')
+,('Jose', 'Moreno', 'M', 'bachelors')
+,('Adam', 'Rice', 'M', 'some college')
+,('Marcelo', 'Barbosa', 'M', 'some college')
+,('Julian', 'Ladd', 'M', 'some college')
+,('Phoenix', 'Swigert', 'F', 'Associate')
+,('Monica', 'Howard', 'F', 'bachelors')
+,('Michael', 'McKinney', 'M', 'some college')
+,('Christian', 'Domingo', 'M', 'Associate')
+
+SELECT * FROM ta_Emilios;
+CREATE TABLE hobbies(id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, name VARCHAR(20), FOREIGN KEY(ta_Emilios_id) REFERENCES ta_Emilios(id));
+ INSERT INTO hobbies(name, last_name, id_ta_Emilios_fk)
+ VALUES ('working out', 2)
+,('running', 3)
+,('video games', 9)
+,('watch tv', 23);
+SELECT * FROM hobbbies;
+
+CREATE TABLE hobbies2(id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, name VARCHAR(20));
+ INSERT INTO hobbies2(name, last_name, student_id)
+ VALUES ('working out')
+,('running')
+,('video games')
+,('watch tv')
+,('model airplanes')
+,('reading')
+,('hiking')
+,('cooking');
+CREATE TABLE hobbystudent(id INT AUTO_INCREMENT PRIMARY KEY, student_id INT, hobby_id INT, FOREIGN KEY(student_id) REFERENCES tekcampers2(id), FOREIGN KEY(hobby_id) REFERENCES hobbies(id));
+SELECT * FROM hobbbies;
+
+
+CREATE TABLE hobbies(id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, name VARCHAR(20));
+ INSERT INTO hobbies(name)
+ VALUES ('working out')
+,('running')
+,('video games')
+,('watch tv')
+,('model airplanes')
+,('reading')
+,('hiking')
+,('cooking');
+CREATE TABLE hs(id INT AUTO_INCREMENT PRIMARY KEY, student_id INT, hobby_id INT, FOREIGN KEY(student_id) REFERENCES tekcampers2(id), FOREIGN KEY(hobby_id) REFERENCES hobbies(id));
+-- SELECT * FROM hobbbies;
+INSERT INTO hs(student_id, hobby_id)
+VALUES (1, 3)
+,(1, 1)
+,(1, 4)
+,(1, 6)
+,(1, 7)
+,(2, 1)
+,(2, 5)
+,(3, 2)
+,(4, 1)
+,(4, 6)
+-- ,(4, 0)
+,(5, 2)
+,(6, 3)
+,(7, 1)
+,(7, 7)
+,(8, 8);
+SELECT * FROM hobbystudent;
+
+
+CREATE TABLE joins(id INT AUTO_INCREMENT PRIMARY KEY, student_id INT, hobby_id INT, FOREIGN KEY(student_id) REFERENCES ta_Emilios(id), FOREIGN KEY(hobby_id) REFERENCES hobbies(id));
+INSERT INTO joins(student_id, hobby_id)
+VALUES (1, 3)
+,(1, 1)
+,(1, 4)
+,(1, 6)
+,(1, 7)
+,(2, 1)
+,(2, 5)
+,(3, 2)
+,(4, 1)
+,(4, 6)
+-- ,(4, 0)
+,(5, 2)
+,(6, 3)
+,(7, 1)
+,(7, 7)
+,(8, 8)
+,(9, 1)
+,(9, 3)
+,(10, 1)
+,(11, 5)
+,(11, 2);
+SELECT * FROM hs;
+
+
+
+
+
+
+scope- determines what should be included in the model, high level categories
+
+model these thins of interest as table
+
+relationships- determines how the tables are related to each other
+customers order products
+invoices track customer orders
+
+determines cardinality of the relationships
+use the appropriate symobls
+
+determin ethe fields eah table needs
+
+determine the keys
+-primary
+-foreign
+
+-- SELECT first_name, last_name FROM ta_Emilios
+-- WHERE joins.student_id in
+-- 	(SELECT name FROM hobbies
+--     WHERE ta_Emilios.id = joins.student_id);
+
+-- SELECT name FROM hobbies
+-- LEFT JOIN joins ON hobbies.id = joins.hobby_id
+
+-- ALTER TABLE ta_Emilios ADD bootcamp VARCHAR(20) DEFAULT NULL;
+
+UPDATE ta_Emilios SET bootcamp='Coding Dojo' WHERE id=1 || id BETWEEN 6 AND 8;
+SELECT * FROM ta_Emilios;
+
+SELECT * FROM ta_Emilios
+JOIN joins ON ta_Emilios.id = student_id;
+-- SELECT MAX(last_name) AS most_hobbies FROM 
+-- (SELECT first_name, last_name FROM ta_Emilios
+-- Join joins ON ta_Emilios.id = joins.student_id
+-- GROUP BY last_name)a;
+
+SELECT * FROM ta_Emilios
+INNER JOIN joins AS b ON ta_Emilios.id = student_id
+INNER JOIN hobbies AS c ON b.hobby_id = c.id;

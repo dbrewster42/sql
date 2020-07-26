@@ -51,9 +51,8 @@ USE tc1_Devon_Brewster;
 -- SELECT * FROM tekcampers2 WHERE gender = 'M';
 -- SELECT * FROM tekcampers2 WHERE education != 'Associate' && education !=  'Bachelor' && education= 'Master';
 --  CREATE TABLE ta_Emilios(id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, first_name VARCHAR(20), last_name VARCHAR(20), gender CHAR, education VARCHAR(30));
--- SELECT * from ta_Emilios;
--- INSERT INTO ta_Emilios(first_name, last_name, gender, education)
--- --  VALUES ('Devon', 'Brewster', 'M', 'some college')
+--  INSERT INTO ta_Emilios(first_name, last_name, gender, education)
+--  VALUES ('Devon', 'Brewster', 'M', 'some college')
 -- ,('Abigail', 'Swigert', 'F', 'Bachelor')
 -- ,('Gabe', 'Chavez', 'M', 'Bachelor')
 -- ,('Phoenix', 'Swigert', 'F', 'Associate')
@@ -61,74 +60,40 @@ USE tc1_Devon_Brewster;
 -- ,('Adam', 'Rice', 'M', 'some college')
 -- ,('Marcelo', 'Barbosa', 'M', 'some college')
 -- ,('Julian', 'Ladd', 'M', 'some college')
--- VALUES ('Phoenix', 'Swigert', 'F', 'Associate')
+-- ,('Phoenix', 'Swigert', 'F', 'Associate')
 -- ,('Monica', 'Howard', 'F', 'bachelors')
 -- ,('Michael', 'McKinney', 'M', 'some college')
 -- ,('Christian', 'Domingo', 'M', 'Associate')
--- ,('Tim', 'Phillips', 'M', 'Master');
  -- CREATE TABLE hobbies2(id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, name VARCHAR(20), student_id INT, FOREIGN KEY(student_id) REFERENCES tekcampers2(id));
 -- SELECT * FROM ta_Emilios;
 -- DROP TABLE hobbies;
---  CREATE TABLE hobbies(id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, name VARCHAR(20));
---  INSERT INTO hobbies(name)
---  VALUES ('working out')
--- ,('running')
--- ,('video games')
--- ,('watch tv')
--- ,('model airplanes')
--- ,('reading')
--- ,('hiking')
--- ,('cooking');
+ CREATE TABLE hobbies(id INT AUTO_INCREMENT NOT NULL PRIMARY KEY, name VARCHAR(20));
+ INSERT INTO hobbies(name)
+ VALUES ('working out')
+,('running')
+,('video games')
+,('watch tv')
+,('model airplanes')
+,('reading')
+,('hiking')
+,('cooking');
 -- CREATE TABLE hs(id INT AUTO_INCREMENT PRIMARY KEY, student_id INT, hobby_id INT, FOREIGN KEY(student_id) REFERENCES tekcampers2(id), FOREIGN KEY(hobby_id) REFERENCES hobbies(id));
 -- SELECT * FROM hobbbies;
--- CREATE TABLE joins(id INT AUTO_INCREMENT PRIMARY KEY, student_id INT, hobby_id INT, FOREIGN KEY(student_id) REFERENCES ta_Emilios(id), FOREIGN KEY(hobby_id) REFERENCES hobbies(id));
--- INSERT INTO joins(student_id, hobby_id)
--- VALUES (1, 3)
--- ,(1, 1)
--- ,(1, 4)
--- ,(1, 6)
--- ,(1, 7)
--- ,(2, 1)
--- ,(2, 5)
--- ,(3, 2)
--- ,(4, 1)
--- ,(4, 6)
--- -- ,(4, 0)
--- ,(5, 2)
--- ,(6, 3)
--- ,(7, 1)
--- ,(7, 7)
--- ,(8, 8)
--- ,(9, 1)
--- ,(9, 3)
--- ,(10, 1)
--- ,(11, 5)
--- ,(11, 2);
--- INSERT INTO joins(student_id, hobby_id)
--- VALUES (12, 2)
--- ,(12, 5);
--- -- ,(13, 8);
--- SELECT first_name, last_name, COUNT(last_name) AS number_of_hobbies FROM ta_Emilios
--- JOIN joins ON ta_Emilios.id = joins.student_id
--- GROUP BY last_name;
-
--- SELECT * FROM joins;
--- SELECT first_name, last_name FROM ta_Emilios
--- WHERE joins.student_id in
--- 	(SELECT name FROM hobbies
---     WHERE ta_Emilios.id = joins.student_id);
-
--- SELECT name FROM hobbies
--- LEFT JOIN joins ON hobbies.id = joins.hobby_id
-
--- ALTER TABLE ta_Emilios ADD bootcamp VARCHAR(20) DEFAULT NULL;
-
-UPDATE ta_Emilios SET bootcamp='Coding Dojo' WHERE id=1 || id BETWEEN 6 AND 8;
-SELECT * FROM ta_Emilios;
-
-SELECT * FROM ta_Emilios
-JOIN joins ON ta_Emilios.id = student_id;
--- SELECT MAX(last_name) AS most_hobbies FROM 
--- (SELECT first_name, last_name FROM ta_Emilios
--- Join joins ON ta_Emilios.id = joins.student_id
--- GROUP BY last_name)a;
+INSERT INTO hs(student_id, hobby_id)
+VALUES (1, 3)
+,(1, 1)
+,(1, 4)
+,(1, 6)
+,(1, 7)
+,(2, 1)
+,(2, 5)
+,(3, 2)
+,(4, 1)
+,(4, 6)
+-- ,(4, 0)
+,(5, 2)
+,(6, 3)
+,(7, 1)
+,(7, 7)
+,(8, 8);
+SELECT * FROM hobbystudent;
